@@ -1,54 +1,88 @@
 # Q5-1
 
+ 
+    
+    
+####
+# xls to csv
+'''
 import pandas as pd
+# 엑셀 파일에서 'times' 시트만 바로 읽기
+df = pd.read_excel("./transportation_card/2018-03.xls", sheet_name='지하철 시간대별 이용현황')
+print(df)
+print(df['승차'].dtype)  # int64나 float64라면 숫자형임
+print(df['승차'].head())  # 천 단위 콤마 없이 그냥 숫자로 나올 것
+
+df['승차'] = df['승차'].str.replace(',', '', regex=False).astype(int)
+
+# CSV로 저장
+df.to_csv('./transportation_card/201803.csv', index=False)
+print(df)
+
+
+xls = pd.read_excel("./transportation_card/2020-03.xls")
+xls.to_csv("./transportation_card/202003.csv")
+
+xls = pd.read_excel("./transportation_card/2025-03.xls")
+xls.to_csv("./transportation_card/202503.csv")
+
+
+
+df = pd.read_excel(excel_file, sheet_name=sheet_name)
+
+print(xls)
+
+# 콤마 제거
+
+xls['
+'] = df['금액'].str.replace(',', '', regex=False).astype(int)
+
+###
+'''
+
+import csv
 import matplotlib.pyplot as plt
 
-def get_total_ridership(file_path):
-    df = pd.read_excel(file_path)
+def read_subway_data(filename):
+    f = open(filename)
+    data = csv.reader(f)
+    next(data)  # 헤더 스킵
+    next(data)
+    s_in = [0] * 24
+    s_out = [0] * 24
+    for row in data:
+        row[4:] = map(int, row[4:])
+        for i in range(24):
+            s_in[i] += row[4 + i * 2]     # 승차 인원
+            s_out[i] += row[5 + i * 2]    # 하차 인원
+    f.close()
+    return s_in, s_out
 
-    # 쉼표 제거 및 정수형 변환
-    df['승차승객수'] = df['승차승객수'].astype(str).str.replace(',', '').astype(int)
+# 각각의 CSV 파일에서 데이터 읽기
+s_in_2018, s_out_2018 = read_subway_data('./transportation_card/201803.csv')
+s_in_2020, s_out_2020 = read_subway_data('./transportation_card/202003.csv')
+s_in_2025, s_out_2025 = read_subway_data('./transportation_card/202503.csv')
 
-    if '승차승객수' in df.columns:
-        total_ridership = df['승차승객수'].sum()
-        return total_ridership  # 이미 int형
-    else:
-        print(f"Error: '승차승객수' column not found in {file_path}")
+# 그래프 그리기
+plt.figure(dpi=300)
+plt.rc('font', family='AppleGothic')
+plt.title('지하철 시간대별 승하차 인원 추이(단위 1000만명)')
+
+plt.plot(s_in_2018, label='201803승차', linestyle='-', color='blue')
+plt.plot(s_out_2018, label='201803하차', linestyle=':', color='orange')
+
+plt.plot(s_in_2020, label='202003승차', linestyle='-', color='green')
+plt.plot(s_out_2020, label='202003하차', linestyle=':', color='red')
+
+plt.plot(s_in_2025, label='202503승차', linestyle='-', color='purple')
+plt.plot(s_out_2025, label='202503하차', linestyle=':', color='brown')
+
+plt.legend()
+plt.xticks(range(24), range(4, 28))  # 4시 ~ 27시로 표시
+plt.show()
 
 
-# Specify the paths to your three Excel files
-file_path_2018 = './transportation_card/2018-03.xls'
-file_path_2020 = './transportation_card/2020-03.xls'
-file_path_2025 = './transportation_card/2025-03.xls'
-
-# Get the total ridership for each month
-ridership_2018 = get_total_ridership(file_path_2018)
-ridership_2020 = get_total_ridership(file_path_2020)
-ridership_2025 = get_total_ridership(file_path_2025)
-
-# Prepare data for plotting
-years = ['2018-03', '2020-03', '2025-03']
-ridership = [ridership_2018, ridership_2020, ridership_2025]
-
-# Filter out months with missing data
-years_filtered = [year for i, year in enumerate(years) if ridership[i] is not None]
-ridership_filtered = [r for r in ridership if r is not None]
-
-# Create the line graph
-if years_filtered:
-    plt.figure(figsize=(10, 6))
-    plt.plot(years_filtered, ridership_filtered, marker='o', linestyle='-', color='skyblue')
-    plt.xlabel('Year-Month')
-    plt.ylabel('Subway Ridership')
-    plt.title('Seoul Subway Ridership Comparison (Pre-COVID and Present)')
-    plt.xticks(years_filtered)
-    plt.grid(axis='y', linestyle='--')
-    plt.tight_layout()
-    plt.show()
-else:
-    print("Error: Could not retrieve ridership data from the files.")
-    
-    
+###
     
 # Q 5-2
 
