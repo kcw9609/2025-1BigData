@@ -10,6 +10,12 @@
 # In[ ]:
 #get_ipython().system('pip install wordcloud  #최초 한번만 설치:Anaconda에 설치됨')
 # In[1]:
+    # 필요한 라이브러리 불러오기
+# - pandas, glob, re: 데이터 처리 및 파일 불러오기
+# - nltk: 토큰화, 불용어 제거, 표제어 처리
+# - Counter: 단어 빈도 계산
+# - matplotlib, wordcloud: 시각화 도구
+
 import pandas as pd
 import glob
 import re
@@ -25,14 +31,15 @@ import matplotlib.pyplot as plt
 from wordcloud import WordCloud, STOPWORDS
 
 
+
 # # 1. 데이터 준비
 # ### 1-1. 파일 병합
 # ### - ☺데이터를 다운 받은 시점에 따라 검색결과가 달라지므로, 책에 있는 결과 화면과 다를수 있습니다.☺ -
-# In[2]:
+# In[2]: 폴더에서 myCabinetExcelData로 시작하는 .xls 파일 모두 불러오기
 all_files = glob.glob('8장_data/myCabinetExcelData*.xls')
 all_files #출력하여 내용 확인
 
-# In[3]:
+# In[3]: 불러온 엑셀 파일들을 하나씩 읽어서 리스트에 저장
 # pip install xlrd <= 설치 필요...
 all_files_data = [] #저장할 리스트 
 for file in all_files:
@@ -40,20 +47,21 @@ for file in all_files:
     all_files_data.append(data_frame)
 all_files_data[0] #출력하여 내용 확인
 
-# In[4]:
+
+# In[4]: 읽은 데이터프레임들을 하나로 합치기 (행 기준으로 연결)
 all_files_data_concat = pd.concat(all_files_data, axis=0, ignore_index=True)
 all_files_data_concat #출력하여 내용 확인
 
-# In[5]:
+# In[5]: 병합된 데이터를 CSV 파일로 저장
 all_files_data_concat.to_csv('8장_data/riss_bigdata.csv', encoding='utf-8', index = False)
 
 # ### 1-2. 데이터 전처리 (Pre-processing)
-# In[6]:
+# In[6]: 제목(title) 열만 추출해서 텍스트 분석에 사용
 # 제목 추출
 all_title = all_files_data_concat['제목']
 all_title #출력하여 내용 확인
 
-# In[7]:
+# In[7]: NLTK에서 불용어(Stopwords)와 표제어 추출기(Lemmatizer) 불러오기
 # import nltk
 # nltk.download('punkt')    # 해보고 안되면 다음 명령어 실행
 # nltk.download('all')      # 5분 이상 소요됨
@@ -61,6 +69,8 @@ stopWords = set(stopwords.words("english"))
 lemma = WordNetLemmatizer()
 
 # In[8]:
+    # 제목에서 단어 추출 및 전처리
+# 1. 특수문자 제거 → 2. 소문자 변환 → 3. 토큰화 → 4. 불용어 제거 → 5. 표제어 처리
 # 아래 2문장이 필요함 import nltk, nltk.download('omw-1.4')
 import nltk
 nltk.download('omw-1.4')
@@ -76,7 +86,9 @@ for title in all_title:
 print(words)  #출력하여 내용 확인
 
 # In[10]:
-words2 = list(reduce(lambda x, y: x+y,words))
+from functools import reduce
+words2 = list(reduce(lambda x, y: x + y, words, []))  # 초기값으로 빈 리스트 지정
+
 print(words2)  #작업 내용 확인
 
 # # 2. 데이터 탐색
