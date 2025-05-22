@@ -69,8 +69,8 @@ dt_dot_data = tree.export_graphviz(dt_clf, out_file = None,
                                   class_names = target_name,
                                   filled = True, rounded = True,
                                   special_characters = True)
-dt_graph = pydotplus.graph_from_dot_data(dt_dot_data)
+# dt_graph = pydotplus.graph_from_dot_data(dt_dot_data)
 
 # 다음 명령어는 따로 실행해본다.
-Image(dt_graph.create_png())
+# Image(dt_graph.create_png())
 
