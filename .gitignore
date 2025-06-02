@@ -3,9 +3,12 @@
 *.csv
 *.pdf
 *.xls
+*.xlsx
 *json
 *.png
 *.PNG
 *.jpeg
 *.jpg
 *.html
+*.ipynb
+
