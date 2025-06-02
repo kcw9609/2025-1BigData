@@ -11,4 +11,4 @@
 *.jpg
 *.html
 *.ipynb
-
+.DS_Store
