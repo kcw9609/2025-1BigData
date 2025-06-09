@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
-
+# , encoding='cp949'
 # In[3]:
 
 
 # plot 그래프
 import csv
-f = open('seoul.csv')
+f = open('seoul.csv', encoding='cp949')
 data = csv.reader(f)
 next(data)
 result = []
@@ -98,7 +98,7 @@ plt.show()
 
 # 서울의 최고기온 온도값을 histogram으로 그려본다.
 import csv
-f = open('seoul.csv')
+f = open('seoul.csv', encoding='cp949')
 data = csv.reader(f)
 next(data)
 result = []
@@ -125,7 +125,7 @@ plt.show()
 
 
 import csv
-f = open('seoul.csv')
+f = open('seoul.csv', encoding='cp949')
 data = csv.reader(f)
 next(data)
 aug = []
@@ -146,7 +146,7 @@ plt.show()
 
 
 import csv
-f = open('seoul.csv')
+f = open('seoul.csv', encoding='cp949')
 data = csv.reader(f)
 next(data)
 aug = []
@@ -265,7 +265,7 @@ plt.show()
 # 12개월 최고기온 boxplot
 import matplotlib.pyplot as plt
 import csv
-f = open('seoul.csv')
+f = open('seoul.csv', encoding='cp949')
 data = csv.reader(f)
 next(data)
 month = [[],[],[],[],[],[],[],[],[],[],[],[]]
@@ -285,7 +285,7 @@ plt.show()
 # 8월 최고기온 boxplot
 import matplotlib.pyplot as plt
 import csv
-f = open('seoul.csv')
+f = open('seoul.csv', encoding='cp949')
 data = csv.reader(f)
 next(data)
 

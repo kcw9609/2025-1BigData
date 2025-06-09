@@ -17,7 +17,7 @@ f.close()
 
 
 import csv
-f =open('seoul.csv')
+f =open('seoul.csv', encoding='cp949')
 data = csv.reader(f)
 header = next(data)  #①
 print(header)        #②
@@ -28,7 +28,7 @@ f.close()
 
 
 import csv
-f =open('seoul.csv')
+f =open('seoul.csv', encoding='cp949')
 data = csv.reader(f)
 header =next(data) # next()는 데이터 위치를 다음으로 이동...
 for row in data :

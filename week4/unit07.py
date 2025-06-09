@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
-
+# , encoding='cp949'
 # In[2]:
 
 
 # 인구 공공데이터 받기 => [www.mois.go. kr] –[정책자료] –[통계] –[주민등록 인구통계 ]
 import csv
 
-f = open('age.csv')
+f = open('age.csv', encoding='cp949')
 data = csv.reader(f)
 for row in data :
     print(row)
@@ -20,12 +20,11 @@ print('신도림' in '서울특별시 구로구 신도림동(1153051000)')
 print('1153' in '서울특별시 구로구 신도림동(1153051000)')
 print('()' in '서울특별시 구로구 신도림동(1153051000)')
 
-
 # In[5]:
 
 
 import csv
-f = open('age.csv')
+f = open('age.csv', encoding='cp949')
 data = csv.reader(f)
 
 for row in data :
@@ -35,7 +34,10 @@ for row in data :
 # pandas 프로그래밍
 import pandas as pd
 mydata=pd.read_csv("./age.csv", encoding='cp949')
-print( mydata[mydata['행정구역'].isin(["신도림"])])
+# nono
+print( mydata[mydata['행정구역'].isin(["신도림"])]) # 신도림으로만 된 행은 없음 ex 서울특별시 신도림
+# yesyes
+print( mydata[mydata['행정구역'].isin(["서울특별시 구로구 신도림동(1153051000)"])]) # 이렇게 하면 나옴
 print(mydata[mydata['행정구역'].str.contains('신도림')].iloc[:,3:])
 
 # In[6]:
@@ -55,7 +57,7 @@ for row in data :
 
 
 import csv
-f = open('age.csv')
+f = open('age.csv', encoding='cp949')
 data = csv.reader(f)
 result = []
 for row in data :
@@ -79,7 +81,7 @@ plt.show()
 
 
 import csv
-f = open('age.csv')
+f = open('age.csv', encoding='cp949')
 data = csv.reader(f)
 result = []
 name = input('인구 구조가 알고 싶은 지역의 이름(읍면동 단위)을 입력해주세요 : ')
@@ -91,7 +93,7 @@ for row in data :
             
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
-plt.rc('font', family = 'Malgun Gothic')
+plt.rc('font', family = 'AppleGothic')
 plt.title(name +' 지역의 인구 구조')
 plt.plot(result)
 plt.show()
@@ -102,7 +104,7 @@ plt.show()
 
 # 동이름 입력 받기... Uchang
 import csv
-f = open('age.csv')
+f = open('age.csv', encoding='cp949')
 data = csv.reader(f)
 result = []
 dong=input('동 이름 입력...=>')
@@ -111,7 +113,7 @@ for row in data :
         print(dong+'동이 포함된 지역 :', row[0])
         print(row)        
         
-f = open('age.csv')  # 파일 다시 열기
+f = open('age.csv', encoding='cp949')  # 파일 다시 열기
 data = csv.reader(f)
 result = []
 print(result)

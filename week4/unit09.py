@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
-
+# , encoding='cp949'
+# AppleGothic
 # In[4]:
 
 
 import csv
-f = open('gender.csv')
+f = open('gender.csv', encoding='cp949')
 data = csv.reader(f)
 m = []
 f = []
@@ -22,7 +23,7 @@ print(len(m), len(f))
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 plt.figure(figsize = (10,5), dpi=300)
-plt.rc('font', family = 'Malgun Gothic')
+plt.rc('font', family = 'AppleGothic')
 plt.rcParams['axes.unicode_minus'] = False
 plt.title(name + ' 지역의 남녀 성별 인구 분포')
 plt.barh(range(101), m, label = '남성')
@@ -35,7 +36,7 @@ plt.show()
 
 
 import csv
-f = open('gender.csv')
+f = open('gender.csv', encoding='cp949')
 data = csv.reader(f)
 m = []
 f = []
@@ -52,7 +53,7 @@ for row in data :
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 plt.figure(figsize = (10,5), dpi=300)
-plt.rc('font', family = 'Malgun Gothic')
+plt.rc('font', family = 'AppleGothic')
 plt.rcParams['axes.unicode_minus'] = False
 plt.title(name + ' 지역의 남녀 성별 인구 분포')
 plt.barh(range(101), m, label = '남성')
@@ -83,7 +84,7 @@ plt.show()
 
 
 import matplotlib.pyplot as plt
-plt.rc('font', family = 'Malgun Gothic')
+plt.rc('font', family = 'AppleGothic')
 size = [2441, 2312, 1031, 1233]
 label = ['A형','B형','AB형', 'O형']
 plt.axis('equal')
@@ -96,7 +97,7 @@ plt.show()
 
 
 import matplotlib.pyplot as plt
-plt.rc('font', family = 'Malgun Gothic')
+plt.rc('font', family = 'AppleGothic')
 size = [2441, 2312, 1031, 1233]
 label = ['A형','B형','AB형', 'O형']
 color = ['darkmagenta', 'deeppink', 'hotpink', 'pink']
@@ -152,7 +153,7 @@ plt.show()
 
 
 import csv
-f = open('gender.csv')
+f = open('gender.csv', encoding='cp949')
 data = csv.reader(f)
 size = []
 name = input('찾고 싶은 지역의 이름을 알려주세요 : ')
@@ -169,7 +170,7 @@ size.append(m)
 size.append(f)
 
 import matplotlib.pyplot as plt
-plt.rc('font', family ='Malgun Gothic')
+plt.rc('font', family ='AppleGothic')
 color = ['crimson', 'darkcyan']
 plt.axis('equal')
 plt.pie(size, labels = ['남','여'], autopct ='%.1f%%', colors = color, startangle =90)

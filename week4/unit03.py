@@ -5,7 +5,7 @@
 
 
 import csv
-f =open('seoul.csv')
+f =open('seoul.csv', encoding='cp949')
 data = csv.reader(f)
 header =next(data)
 for row in data :

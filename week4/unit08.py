@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
-
+# , encoding='cp949'
 # In[3]:
 
 
@@ -21,7 +21,7 @@ plt.show()
 
 
 import csv
-f = open('age.csv')
+f = open('age.csv', encoding='cp949')
 data = csv.reader(f)
 
 result = []
@@ -58,7 +58,7 @@ plt.show()
 
 
 import csv
-f = open('gender.csv')  ### gender.csv
+f = open('gender.csv', encoding='cp949')  ### gender.csv
 data = csv.reader(f)
 m = []
 f = []
@@ -74,7 +74,7 @@ f.reverse()
 
 
 import csv
-f =open('gender.csv')
+f =open('gender.csv', encoding='cp949')
 data = csv.reader(f)
 m = []
 f = []
@@ -102,7 +102,7 @@ print(f) #
 
 
 import matplotlib.pyplot as plt
-plt.rc('font', family = 'Malgun Gothic')
+plt.rc('font', family = 'AppleGothic')
 plt.title('신도림 지역의 남녀 성별 인구 분포')
 plt.barh(range(101), m, label = '남성')
 plt.barh(range(101), f, label = '여성')
@@ -116,7 +116,7 @@ plt.show()
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 #plt.figure(figsize = (10,5), dpi=300)
-plt.rc('font', family = 'Malgun Gothic')
+plt.rc('font', family = 'AppleGothic')
 plt.rcParams['axes.unicode_minus'] = False
 plt.title('신도림 지역의 남녀 성별 인구 분포')
 plt.barh(range(101), m, label = '남성')
@@ -129,7 +129,7 @@ plt.show()
 
 
 import csv
-f = open('gender.csv')
+f = open('gender.csv', encoding='cp949')
 data = csv.reader(f)
  
 m = []
@@ -147,7 +147,7 @@ for row in data :
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 plt.figure(figsize = (10,5), dpi=300)
-plt.rc('font', family = 'Malgun Gothic')
+plt.rc('font', family = 'AppleGothic')
 plt.rcParams['axes.unicode_minus'] = False
 plt.title(name + ' 지역의 남녀 성별 인구 분포')
 plt.barh(range(101), m, label = '남성')

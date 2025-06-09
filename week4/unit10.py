@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
-
+# , encoding='cp949'
+# AppleGothic
 # In[5]:
 
 
 import csv
-f = open('gender.csv')
+f = open('gender.csv', encoding='cp949')
 data = csv.reader(f)
 m = []
 f = []
@@ -29,7 +30,7 @@ plt.show()
 
 
 import csv
-f = open('gender.csv')
+f = open('gender.csv', encoding='cp949')
 data = csv.reader(f)
 result = []
 name = input('궁금한 동네를 입력해주세요 : ')
@@ -146,7 +147,7 @@ plt.show()
 
 
 import csv
-f = open('gender.csv')
+f = open('gender.csv', encoding='cp949')
 data = csv.reader(f)
 m = []
 f = []
@@ -181,7 +182,7 @@ plt.show()
 
 import csv
 import math
-f = open('gender.csv')
+f = open('gender.csv', encoding='cp949')
 data = csv.reader(f)
 m = []
 f = []
@@ -197,7 +198,7 @@ for row in data :
         break
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
-plt.rc('font',family='Malgun Gothic')
+plt.rc('font',family='AppleGothic')
 plt.figure(figsize = (10,5), dpi=300)            
 plt.title(name+' 지역의 성별 인구 그래프')
 plt.scatter(m, f, s = size, c = range(101), alpha=0.5, cmap='jet')

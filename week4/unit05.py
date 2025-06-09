@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 # coding: utf-8
+# encoding='cp949'
 
 # In[1]:
 
 
 import csv
-f = open('seoul.csv')
+f = open('seoul.csv', encoding='cp949')
 data = csv.reader(f)
 for row in data :
     print(row)
-
 
 # In[2]:
 
@@ -27,7 +27,7 @@ for row in data :
 
 
 import csv
-f = open('seoul.csv')
+f = open('seoul.csv', encoding='cp949')
 data = csv.reader(f)
 next(data)
 result = [] # 최고 기온 데이터를 저장할 리스트 생성
@@ -49,7 +49,7 @@ print(len(result))
 
 import csv
 import matplotlib.pyplot as plt
-f = open('seoul.csv')
+f = open('seoul.csv', encoding='cp949')
 data = csv.reader(f)
 next(data)
 result = []
@@ -93,11 +93,10 @@ print(date.split('-')[2])
 # 8월의 온도값 조사
 import csv
 
-f = open('seoul.csv')
+f = open('seoul.csv', encoding='cp949')
 data = csv.reader(f)
 next(data)
 result = []
-
 for row in data :
     if row[-1] != '' :
         if row[0].split('-')[1] == '08' :
@@ -116,7 +115,7 @@ plt.show()
 
 # 매년 2월 14일 최고기온 데이터로 그려보기
 import csv
-f = open('seoul.csv')
+f = open('seoul.csv', encoding='cp949')
 data = csv.reader(f)
 next(data)
 result = []
@@ -138,7 +137,7 @@ plt.show()
 
 # 매년 2월 14일 최고기온/최저기온 데이터로 그려보기
 import csv
-f = open('seoul.csv')
+f = open('seoul.csv', encoding='cp949')
 data = csv.reader(f)
 next(data)
 high = []
@@ -164,7 +163,7 @@ plt.show()
 # 1983년 이후 2월 14일 최고기온/최저기온 데이터로 그려보기
 import csv
 
-f = open('seoul.csv')
+f = open('seoul.csv', encoding='cp949')
 data = csv.reader(f)
 next(data)
 high = []
@@ -190,7 +189,7 @@ plt.show()
 # 1983년 이후 2월 14일 최고기온/최저기온 데이터로 그려보기
 import csv
 
-f = open('seoul.csv')
+f = open('seoul.csv', encoding='cp949')
 data = csv.reader(f)
 next(data)
 high = []
@@ -208,7 +207,7 @@ import matplotlib.pyplot as plt
 plt.plot(high, 'hotpink')
 plt.plot(low, 'skyblue')
 
-plt.rc('font', family ='Malgun Gothic')       #한글폰트사용하기
+plt.rc('font', family ='AppleGothic')       #한글폰트사용하기
 plt.title('내 생일의 기온 변화 그래프')
 #plt.rcParams['axes.unicode_minus']=False     #한글폰트사용시 마이너스 부호
 plt.show()
@@ -221,7 +220,7 @@ plt.show()
 import csv
 import matplotlib.pyplot as plt
 
-f = open('seoul.csv')
+f = open('seoul.csv', encoding='cp949')
 data = csv.reader(f)
 next(data)
 high = [] # 최고 기온 값을 저장할 리스트 high 생성
@@ -235,7 +234,7 @@ for row in data :
                 high.append(float(row[-1])) # 최고 기온 값을 high 리스트에 저장
                 low.append(float(row[-2])) # 최저 기온 값을 low 리스트에 저장
 
-                plt.rc('font', family = 'Malgun Gothic') # 맑은 고딕을 기본 글꼴로 설정
+                plt.rc('font', family = 'AppleGothic') # 맑은 고딕을 기본 글꼴로 설정
 plt.rcParams['axes.unicode_minus'] = False # 마이너스 기호 깨짐 방지
 plt.title('내 생일의 기온 변화 그래프') # 제목 설정
 plt.plot(high, 'hotpink', label = 'high') # high 리스트에 저장된 값을 hotpink 색으로 그리고 레이블을 표시
