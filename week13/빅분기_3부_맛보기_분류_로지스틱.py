@@ -97,7 +97,7 @@ model.score(X_scaled_minmax_train, y_train)
 pred_test=model.predict(X_scaled_minmax_test)
 model.score(X_scaled_minmax_test, y_test)
 # In[20]:
-# 학습데이터의 혼동행렬 보기(정분류, 오분류 교차표)
+# 학습데이터의 혼동행렬 보기(정분류, 오분류 교차표) confusion_matrix(정답, 예측) 순서 매우 중요
 from sklearn.metrics import confusion_matrix
 confusion_train=confusion_matrix(y_train, pred_train)
 print("훈련데이터 오차행렬:\n", confusion_train)
@@ -138,13 +138,13 @@ plt.show()
 # In[26]:
 # 학습데이터의 예측범주, 예측확률 컬럼을 생성하여 'y_train' 데이터셋에 추가
 prob_train=model.predict_proba(X_scaled_minmax_train)
-y_train[['y_pred']]=pred_train
+y_train['y_pred']=pred_train #y_train['y_pred']=pred_train.reshape(-1, 1)  # 예측값을 2차원 배열로 변환
 y_train[['y_prob0', 'y_prob1']]=prob_train
 y_train
 # In[27]:
 # 테스트 데이터의 예측범주, 예측확률 컬럼을 생성하여 'y_test' 데이터셋에 추가
 prob_test=model.predict_proba(X_scaled_minmax_test)
-y_test[['y_pred']]=pred_test
+y_test['y_pred']=pred_test # y_test[['y_pred']]=pred_test # 20250605
 y_test[['y_prob0', 'y_prob1']]=prob_test
 y_test
 # In[28]:
